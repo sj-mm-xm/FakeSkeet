@@ -47,3 +47,7 @@ The RCS is experimental but i think it does compensate recoil well. For no RCS, 
 If you encounter errors or bugs feel free to open an issue. 
 
 Ill also take certain feature requests. Just open an issue.
+
+Code may not be optimized in some places but idc. Works good enough.
+
+Pasted and enhanced/rewritten from https://github.com/sweeperxz/FullyExternalCS2 Thank you to this developer for the usable base. 
