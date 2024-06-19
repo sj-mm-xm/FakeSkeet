@@ -1,85 +1,53 @@
-## FullyExternalCS2
+# FakeSkeet
+An External legit cheat for cs2. 
 
-### Description
+# Preview:
+![skeet1](https://github.com/sj-mm-xm/FakeSkeet/assets/93609666/32cc0b8a-25b1-4cc8-8301-22ea909a7838) ![skeet2](https://github.com/sj-mm-xm/FakeSkeet/assets/93609666/b9027b1a-b04c-442c-9616-abb3f32dc10a)
 
-FullyExternalCS2 is an external cheat for Counter-Strike 2 **that does not write to the game memory**. \
-It was created for the _purpose_ of _improving_ Windows API skills. \
-[Please note that.](https://github.com/sweeperxz/FullyExternalCS2/issues/6#issuecomment-1919053959)
 
-![SS](assets/photo.png)
 
-### Features
+# Features:
 
-#### AimBot
+Aimbot
 
-- Key activation with RCS (default = LBUTTON)
-- Visibility check
+   ~Aimbot FOV
 
-#### Esp
+   ~Aimbot RCS
 
-- Skeleton (Color team)
-- Box with health bar
-- Health numbers
-- Name
-- Enemy weapon
-- Enemy flags (Scoped, Flashed, Shifting, Shifting in scope)
+   ~Hitsound
 
-#### Other Visuals
+Visuals
 
-- Aim Crosshair
-- [Bomb timer](https://streamable.com/ylouzc)
+   ~Box
 
-#### Trigger Bot
+   ~Name
 
-- Key activation (default = LAlt)
-- [No Spread](https://streamable.com/9ltv4n)
+   ~Health
 
-#### Miscellaneous
+   ~FOV changer (shitty)
 
-- [BunnyHop](https://streamable.com/3r09m1) ( [Read this](https://github.com/sweeperxz/FullyExternalCS2/blob/151355b47373acdc3ccaa6f526e94388c4e71f2b/Data/Entity/Player.cs#L64) )
-- OBS Bypass
+# How to use?
 
-#### System
+Extract zip to folder
 
-- Auto update offsets
+Run the executable CS2Cheat.exe with cs2 open. (Main menu or in game doesnt matter)
 
-### Getting started
+Let it load for a few seconds and use the Insert key to toggle the menu. 
 
-**Dependencies**
+For developers, build the source in Debug | x64.
 
-```cs
-    <ItemGroup>
-        <PackageReference Include="GameOverlay.Net" Version="4.3.1"/>
-        <PackageReference Include="Overlay.NET" Version="1.0.2"/>
-        <PackageReference Include="PresentationFramework" Version="4.6.0"/>
-        <PackageReference Include="SharpDX.Direct3D9" Version="4.2.0"/>
-        <PackageReference Include="SharpDX.DXGI" Version="4.2.0"/>
-    </ItemGroup>
-```
+# Notes:
 
-**Installation**
+.NET 8.0 runtimes / sdk required. Pls make a google search and download it
 
-```bash
-git clone https://github.com/sweeperxz/FullyExternalCS2.git
-cd FullyExternalCS2
-```
+The aimbot is only really for automatics. The aimbot triggers once you have shot more than 0 bullets (m_iShotsFired).
 
-### Starting the program
+The RCS is experimental but i think it does compensate recoil well. For no RCS, simply set both X and Y values to 0.
 
-```bash
-dotnet build
-dotnet run
-```
+If you encounter errors or bugs feel free to open an issue. 
 
-### Help
+Ill also take certain feature requests. Just open an issue.
 
-If you have issues or have questions, check out the Issues section of the GitHub project page.
+Code may not be optimized in some places but idc. Works good enough.
 
-### Authors
-
-- sweeperxz - Developer/Engineer
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=sweeperxz/FullyExternalCS2&type=Date)](https://star-history.com/#sweeperxz/FullyExternalCS2&Date)
-
+Pasted and enhanced/rewritten from https://github.com/sweeperxz/FullyExternalCS2 Thank you to this developer for the usable base. 
