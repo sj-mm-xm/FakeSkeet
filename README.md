@@ -1,6 +1,11 @@
 # FakeSkeet
 An External legit cheat for cs2. 
 
+# Preview:
+![skeet1](https://github.com/sj-mm-xm/FakeSkeet/assets/93609666/32cc0b8a-25b1-4cc8-8301-22ea909a7838) ![skeet2](https://github.com/sj-mm-xm/FakeSkeet/assets/93609666/b9027b1a-b04c-442c-9616-abb3f32dc10a)
+
+
+
 # Features:
 
 Aimbot
@@ -37,7 +42,7 @@ For developers, build the source in Debug | x64.
 
 The aimbot is only really for automatics. The aimbot triggers once you have shot more than 0 bullets (m_iShotsFired).
 
-The RCS is experimental but i think it does compensate recoil well. 
+The RCS is experimental but i think it does compensate recoil well. For no RCS, simply set both X and Y values to 0.
 
 If you encounter errors or bugs feel free to open an issue. 
 
