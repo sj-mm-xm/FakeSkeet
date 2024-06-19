@@ -1,0 +1,74 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+		<TargetFramework>net8.0-windows7.0</TargetFramework>
+
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <UseWindowsForms>true</UseWindowsForms>
+        <UseWpf>true</UseWpf>
+        <LangVersion>latest</LangVersion>
+        <Platforms>AnyCPU;x64;x86</Platforms>
+        <ApplicationIcon>assets\logo.ico</ApplicationIcon>
+        <Version>1.7</Version>
+        <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+        <PlatformTarget>x86</PlatformTarget>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <PlatformTarget>x64</PlatformTarget>
+        <Prefer32bit>false</Prefer32bit>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Remove="skeet.bmp" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="GameOverlay.Net" Version="4.3.1" />
+        <PackageReference Include="ImGui.NET" Version="1.90.6.1" />
+        <PackageReference Include="MaterialSkin" Version="0.2.1" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="Overlay.NET" Version="1.0.2" />
+        <PackageReference Include="PresentationFramework" Version="4.6.0" />
+        <PackageReference Include="SharpDX.Direct3D9" Version="4.2.0" />
+        <PackageReference Include="SharpDX.DXGI" Version="4.2.0" />
+        <PackageReference Include="SixLabors.ImageSharp" Version="3.1.4" />
+        <PackageReference Include="SkiaSharp.Svg" Version="1.60.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\skeetSliderpls\skeetSliderpls.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="SkeetUI">
+        <HintPath>..\..\..\source\repos\NebulaLoader\NebulaLoader\bin\Debug\SkeetUI.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Resource Include="skeet.bmp" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Properties\Resources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Resources.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Properties\Resources.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+</Project>

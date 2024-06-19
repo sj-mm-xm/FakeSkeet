@@ -1,53 +1,85 @@
-# FakeSkeet
-An External legit cheat for cs2. 
+## FullyExternalCS2
 
-# Preview:
-![skeet1](https://github.com/sj-mm-xm/FakeSkeet/assets/93609666/32cc0b8a-25b1-4cc8-8301-22ea909a7838) ![skeet2](https://github.com/sj-mm-xm/FakeSkeet/assets/93609666/b9027b1a-b04c-442c-9616-abb3f32dc10a)
+### Description
 
+FullyExternalCS2 is an external cheat for Counter-Strike 2 **that does not write to the game memory**. \
+It was created for the _purpose_ of _improving_ Windows API skills. \
+[Please note that.](https://github.com/sweeperxz/FullyExternalCS2/issues/6#issuecomment-1919053959)
 
+![SS](assets/photo.png)
 
-# Features:
+### Features
 
-Aimbot
+#### AimBot
 
-   ~Aimbot FOV
-   
-   ~Aimbot RCS
-   
-   ~Hitsound
-   
-Visuals
+- Key activation with RCS (default = LBUTTON)
+- Visibility check
 
-   ~Box
-   
-   ~Name
-   
-   ~Health
-   
-   ~FOV changer (shitty)
+#### Esp
 
-# How to use?
+- Skeleton (Color team)
+- Box with health bar
+- Health numbers
+- Name
+- Enemy weapon
+- Enemy flags (Scoped, Flashed, Shifting, Shifting in scope)
 
-Extract zip to folder
+#### Other Visuals
 
-Run the executable CS2Cheat.exe with cs2 open. (Main menu or in game doesnt matter)
+- Aim Crosshair
+- [Bomb timer](https://streamable.com/ylouzc)
 
-Let it load for a few seconds and use the Insert key to toggle the menu. 
+#### Trigger Bot
 
-For developers, build the source in Debug | x64.
+- Key activation (default = LAlt)
+- [No Spread](https://streamable.com/9ltv4n)
 
-# Notes:
+#### Miscellaneous
 
-.NET 8.0 runtimes / sdk required. Pls make a google search and download it
+- [BunnyHop](https://streamable.com/3r09m1) ( [Read this](https://github.com/sweeperxz/FullyExternalCS2/blob/151355b47373acdc3ccaa6f526e94388c4e71f2b/Data/Entity/Player.cs#L64) )
+- OBS Bypass
 
-The aimbot is only really for automatics. The aimbot triggers once you have shot more than 0 bullets (m_iShotsFired).
+#### System
 
-The RCS is experimental but i think it does compensate recoil well. For no RCS, simply set both X and Y values to 0.
+- Auto update offsets
 
-If you encounter errors or bugs feel free to open an issue. 
+### Getting started
 
-Ill also take certain feature requests. Just open an issue.
+**Dependencies**
 
-Code may not be optimized in some places but idc. Works good enough.
+```cs
+    <ItemGroup>
+        <PackageReference Include="GameOverlay.Net" Version="4.3.1"/>
+        <PackageReference Include="Overlay.NET" Version="1.0.2"/>
+        <PackageReference Include="PresentationFramework" Version="4.6.0"/>
+        <PackageReference Include="SharpDX.Direct3D9" Version="4.2.0"/>
+        <PackageReference Include="SharpDX.DXGI" Version="4.2.0"/>
+    </ItemGroup>
+```
 
-Pasted and enhanced/rewritten from https://github.com/sweeperxz/FullyExternalCS2 Thank you to this developer for the usable base. 
+**Installation**
+
+```bash
+git clone https://github.com/sweeperxz/FullyExternalCS2.git
+cd FullyExternalCS2
+```
+
+### Starting the program
+
+```bash
+dotnet build
+dotnet run
+```
+
+### Help
+
+If you have issues or have questions, check out the Issues section of the GitHub project page.
+
+### Authors
+
+- sweeperxz - Developer/Engineer
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=sweeperxz/FullyExternalCS2&type=Date)](https://star-history.com/#sweeperxz/FullyExternalCS2&Date)
+

@@ -1,0 +1,76 @@
+﻿<Window x:Class="CS2Cheat.Menu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CS2Cheat"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        BorderBrush="Transparent"
+        MouseDown="Window_MouseDown"
+        MouseUp="Window_MouseUp"
+        MouseMove="Window_MouseMove"
+        Title="Menu"
+        Height="350"
+        Width="320">
+
+    <Grid x:Name="mainGrid">
+
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://application:,,,/CS2Cheat;component/skeet.bmp"/>
+        </Grid.Background>
+        <TabControl Margin="10,17,10,10" Background="#02FFFFFF">
+            <TabItem Header="Aimbot">
+                <Grid Background="#FF111111">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="13*"/>
+                        <ColumnDefinition Width="374*"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="teamcheckAim" Grid.Column="1" Content="Team Check" HorizontalAlignment="Left" Margin="30,75,0,0" VerticalAlignment="Top" Foreground="#FFD8CACA" Checked="CheckBox_Checked_1" Unchecked="uncheck_aimteamcheck" RenderTransformOrigin="-1.396,4.374"/>
+                    <Slider x:Name="aimFovSlider" IsSnapToTickEnabled="True" HorizontalAlignment="Left" Margin="160,125,0,0" VerticalAlignment="Top" Width="120" Maximum="180" Minimum="5" SmallChange="1" Value="45" ValueChanged="aimFovSlider_Changed" Grid.Column="1"/>
+                    <Label x:Name="aimFOV" Content="FOV: 45" HorizontalAlignment="Left" Margin="16,120,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="76" Foreground="White"/>
+                    <CheckBox x:Name="aimMasterBool" Grid.Column="1" Content="Aimbot" HorizontalAlignment="Left" Margin="30,34,0,0" VerticalAlignment="Top" Foreground="#FFD8CACA" Checked="masterAim_Checked" Unchecked="masterAim_UnChecked" RenderTransformOrigin="-1.396,4.374"/>
+                    <Slider x:Name="aimRcs_x" IsSnapToTickEnabled="True" HorizontalAlignment="Left" Margin="160,151,0,0" VerticalAlignment="Top" Width="120" Maximum="2" Minimum="0" SmallChange="0.01" Value="1" ValueChanged="aimrcs_x_Changed" Grid.Column="1" LargeChange="0.01" TickFrequency="0.01"/>
+                    <Slider x:Name="aimRcs_y" IsSnapToTickEnabled="True" HorizontalAlignment="Left" Margin="160,180,0,0" VerticalAlignment="Top" Width="120" Maximum="2" SmallChange="0.01" Value="1" ValueChanged="aimrcs_y_Changed" Grid.Column="1" TickFrequency="0.01" LargeChange="0.01"/>
+                    <Label x:Name="rcsLabelX" Content="X RCS: 1.0" HorizontalAlignment="Left" Margin="16,146,0,0" VerticalAlignment="Top" Width="73" Foreground="White" Grid.ColumnSpan="2"/>
+                    <Label x:Name="rcsLabelY" Content="Y RCS: 1.0" HorizontalAlignment="Left" Margin="16,172,0,0" VerticalAlignment="Top" Width="73" Foreground="White" Grid.ColumnSpan="2"/>
+                    <CheckBox x:Name="triggerbotBool" Grid.Column="1" Content="Triggerbot" HorizontalAlignment="Left" Margin="30,54,0,0" VerticalAlignment="Top" Foreground="#FFD8CACA" Checked="triggerbotBool_Checked" Unchecked="triggerbotBool_UnChecked" RenderTransformOrigin="-1.396,4.374"/>
+                    <Slider x:Name="triggerBotDelay" IsSnapToTickEnabled="True" HorizontalAlignment="Left" Margin="160,213,0,0" VerticalAlignment="Top" Width="120" Maximum="200" SmallChange="1" Value="40" ValueChanged="triggerDelayChanged" Grid.Column="1"/>
+                    <Label x:Name="tbotDelayLabel" Content="Triggerbot delay(ms): 40" HorizontalAlignment="Left" Margin="16,205,0,0" VerticalAlignment="Top" Width="165" Foreground="White" Grid.ColumnSpan="2"/>
+                    <Button x:Name="triggerBotGetHotKey" Grid.Column="1" Content="   [   .  .  .   ]   " HorizontalAlignment="Left" Margin="160,241,0,0" VerticalAlignment="Top" Height="22" Width="120" Background="#FF111111" Foreground="White" Click="Button_Click"/>
+                    <Label x:Name="tbotDelayLabel_Copy" Content="Triggerbot key(hold): " HorizontalAlignment="Left" Margin="16,239,0,0" VerticalAlignment="Top" Width="165" Foreground="White" Grid.ColumnSpan="2"/>
+                    <CheckBox x:Name="hitsound" Grid.Column="1" Content="Hitsound" HorizontalAlignment="Left" Margin="30,95,0,0" VerticalAlignment="Top" Foreground="#FFD8CACA" Checked="hitsound_Checked" Unchecked="hitsound_UnChecked" RenderTransformOrigin="-1.396,4.374"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Visuals">
+                <Grid Background="#FF111111">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="14*"/>
+                        <ColumnDefinition Width="373*"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="enemyBox" Content="Box" HorizontalAlignment="Left" Margin="52,33,0,0" VerticalAlignment="Top" Foreground="#FFEFE2E2" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" Grid.Column="1"/>
+                    <CheckBox x:Name="enemyName" Content="Name" HorizontalAlignment="Left" Margin="52,53,0,0" VerticalAlignment="Top" Foreground="#FFEFE2E2" Checked="eName_Checked" Unchecked="eName_Unchecked" Grid.Column="1"/>
+                    <CheckBox x:Name="enemyHealthint" Content="Health (number)" HorizontalAlignment="Left" Margin="52,73,0,0" VerticalAlignment="Top" Foreground="#FFEFE2E2" Checked="eHealthint_Checked" Unchecked="eHealthint_Unchecked" Grid.Column="1"/>
+
+                    <CheckBox x:Name="teamBox" Content="Box" HorizontalAlignment="Left" Margin="52,120,0,0" VerticalAlignment="Top" Foreground="#FFEFE2E2" Checked="tBox_Checked" Unchecked="tBox_Unchecked" Grid.Column="1"/>
+
+                    <CheckBox x:Name="teamName" Content="Name" HorizontalAlignment="Left" Margin="52,140,0,0" VerticalAlignment="Top" Foreground="#FFEFE2E2" Checked="tName_Checked" Unchecked="tName_Unchecked" Grid.Column="1"/>
+
+                    <CheckBox x:Name="teamHealthint" Content="Health (number)" HorizontalAlignment="Left" Margin="52,160,0,0" VerticalAlignment="Top" Foreground="#FFEFE2E2" Checked="tHealthint_Checked" Unchecked="tHealthint_Unchecked" Grid.Column="1"/>
+
+
+                    <Slider x:Name="sliderFov" IsSnapToTickEnabled="True" HorizontalAlignment="Left" Margin="78,198,0,0" VerticalAlignment="Top" Width="120" Maximum="180" Minimum="30" SmallChange="1" Value="90" ValueChanged="Slider_ValueChanged" Grid.Column="1"/>
+
+                    <Label x:Name="labelFov" Content="FOV: 90" HorizontalAlignment="Left" Margin="12,194,0,0" VerticalAlignment="Top" Background="#FF111111" Foreground="#FFD8C2C2" RenderTransformOrigin="0.606,1.003" Grid.Column="1"/>
+                    <Label x:Name="aimFOV_Copy" Content="Enemy" HorizontalAlignment="Left" Margin="6,25,0,0" VerticalAlignment="Top" Width="54" Foreground="White" Grid.Column="1" RenderTransformOrigin="0.611,1.234"/>
+                    <Label x:Name="aimFOV_Copy1" Content="Team" HorizontalAlignment="Left" Margin="6,112,0,0" VerticalAlignment="Top" Width="54" Foreground="White" Grid.Column="1" RenderTransformOrigin="0.611,1.234"/>
+
+                </Grid>
+
+            </TabItem>
+
+        </TabControl>
+
+    </Grid>
+</Window>
