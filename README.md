@@ -50,4 +50,10 @@ Ill also take certain feature requests. Just open an issue.
 
 Code may not be optimized in some places but idc. Works good enough.
 
-Pasted and enhanced/rewritten from https://github.com/sweeperxz/FullyExternalCS2 Thank you to this developer for the usable base. 
+Pasted and enhanced/rewritten from https://github.com/sweeperxz/FullyExternalCS2 
+
+Thank you to this developer for the usable base. 
+
+I am not responsible for any bans or other consequences that may arise from the use of this software. 
+Use game modifications at your own risk. 
+Always be aware of the risks and potential consequences when using cheats or hacks in online games.
