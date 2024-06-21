@@ -1,7 +1,7 @@
 # FakeSkeet
 An External legit cheat for cs2. 
 
-# Preview:
+# Preview (preview images are old, has more features now):
 ![skeet1](https://github.com/sj-mm-xm/FakeSkeet/assets/93609666/32cc0b8a-25b1-4cc8-8301-22ea909a7838) ![skeet2](https://github.com/sj-mm-xm/FakeSkeet/assets/93609666/b9027b1a-b04c-442c-9616-abb3f32dc10a)
 
 
