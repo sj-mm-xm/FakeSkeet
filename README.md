@@ -14,9 +14,13 @@ Aimbot
 
    ~Aimbot RCS
 
+   ~Aimbot autostop
+   
    ~Hitsound
 
 Visuals
+
+   ~Glow
 
    ~Box
 
