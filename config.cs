@@ -1,4 +1,5 @@
 ﻿using CS2Cheat.Core.Data;
+using SixLabors.ImageSharp.Formats.Png;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,6 +7,10 @@ using System.Windows.Input;
 
 namespace config
 {
+    public class neededInfo
+    {
+        internal static bool isAiming = false;
+    }
     public class config
     {
 
@@ -14,6 +19,19 @@ namespace config
         internal static int i_m_fov = 90;
 
         internal static float f_m_vmfov = 60;
+
+
+        internal static bool masterGlow = false;
+
+        internal static bool b_e_glow = false;
+        internal static bool b_t_glow = false;
+
+        internal static uint enemyGlowColor = 0x800000FF;
+
+        internal static uint teamGlowColor = 0x800000FF;
+
+
+
 
         // enemy esp values
 
@@ -36,6 +54,8 @@ namespace config
 
         // aimbot values
 
+        internal static bool bhop = false;
+
         internal static Keys k_m_aimKey = Keys.XButton1;
 
         internal static bool aimbot_teamCheck = false;
@@ -55,6 +75,8 @@ namespace config
         internal static System.Windows.Input.Key triggerHoldKey = 0;
 
         internal static bool hitsound = false;
+
+        internal static bool autoStop = false;
     }
 
 }

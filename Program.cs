@@ -37,6 +37,9 @@ public class Program :
 
     private bhop bhop { get; set; } = null!;
 
+    private realBhop realBhop { get; set; } = null!;
+
+
     private BombTimer BombTimer { get; set; } = null!;
 
     public void Dispose()
@@ -102,9 +105,11 @@ public class Program :
             Misc = new Misc(GameProcess, GameData);
             Misc.Start();
 
-            //bhop = new bhop(GameProcess, GameData);
-            //bhop.Start();
+            bhop = new bhop(GameProcess, GameData);
+            bhop.Start();
 
+            realBhop = new realBhop(GameProcess, GameData);
+            realBhop.Start();
             //rcs = new rcs(GameProcess, GameData);
             //rcs.Start();
 

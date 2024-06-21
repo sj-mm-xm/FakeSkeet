@@ -8,7 +8,6 @@ using CS2Cheat.Utils;
 using Process.NET.Memory;
 using config;
 using System.Numerics;
-using System.Runtime.InteropServices;
 
 namespace CS2Cheat.Features
 {
@@ -17,6 +16,8 @@ namespace CS2Cheat.Features
         private readonly object _stateLock = new();
         private GameProcess GameProcess { get; set; }
         private GameData GameData { get; set; }
+
+        
 
         public rcs(GameProcess gameProcess, GameData gameData)
         {
@@ -33,43 +34,74 @@ namespace CS2Cheat.Features
             GameProcess = null;
         }
 
-        [DllImport("user32.dll")]
-        public static extern void mouse_event(uint dwFlags, int dx, int dy, uint dwData, int dwExtraInfo);
+        /*
+         *     old_punch = { 0, 0, 0 }
+    while ur_shit_is_running {
+        if shots_fired > 1 and ur_holding_rcs_button_lmb_or_whatever {
+            new_angles = ((localplayer_viewangles + old_punch) - (punch_angle * 2.f)).normalized()
+            old_punch = punch_angle * 2.f
+            localplayer_viewangles = new_angles
+        } else
+            old_punch = { 0, 0, 0 }
+    }
 
-        const uint MOUSEEVENTF_MOVE = 0x0001;
+        */
 
-        private static SharpDX.Vector2 oldAngles = new SharpDX.Vector2(0, 0);
-        private const float m_pitch = 0.022f;
-        private const float m_yaw = 0.022f;
-        private const float sens = 1.25f; // Hardcoded mouse sensitivity in settings
-
+        private static SharpDX.Vector3 oPunch = new SharpDX.Vector3(0, 0, 0);
+        private static int rcsBulletTracker = 0;
         protected override void FrameAction()
         {
             if (!GameProcess.IsValid || !GameData.Player.IsAlive()) return;
 
-            SharpDX.Vector2 aimPunch = GameData.Player.AimPunchAngle;
-            int shotsFired = GameData.Player.ShotsFired;
-
-            if (shotsFired > 1)
+            if(GameData.Player.ShotsFired > 1 && GameData.Player.ShotsFired != rcsBulletTracker)
             {
-                aimPunch = GameData.Player.AimPunchAngle;
-
                 SharpDX.Vector2 newAngles = new SharpDX.Vector2
                 {
-                    X = (aimPunch.Y - oldAngles.Y) * 2f / (m_pitch * sens) / 1,
-                    Y = -(aimPunch.X - oldAngles.X) * 2f / (m_yaw * sens) / 1
+                    X = (GameData.Player.AimPunchAngleVec3.Y - oPunch.Y) * 2f,
+                    Y = -(GameData.Player.AimPunchAngleVec3.X - oPunch.X) * 2f
+
                 };
 
-                // Move the mouse to compensate for recoil
-                mouse_event(MOUSEEVENTF_MOVE, (int)(newAngles.X), (int)newAngles.Y, 0, 0);
+                Console.WriteLine($"[SHOT {GameData.Player.ShotsFired}] newangles: {newAngles}");
 
-                // Update oldAngles to the current aimPunch for the next frame
-                oldAngles = aimPunch;
+                newAngles.Normalize();
+
+                Console.WriteLine($"[SHOT {GameData.Player.ShotsFired}] newangles normalized: {newAngles}");
+
+
+                oPunch = GameData.Player.AimPunchAngleVec3 * 2f;
+
+                SetViewAngle(newAngles.X, newAngles.Y);
+                Console.WriteLine($"[SHOT {GameData.Player.ShotsFired}] set angles: {newAngles}");
+
+                rcsBulletTracker = GameData.Player.ShotsFired;
+
             }
             else
             {
-                oldAngles = new SharpDX.Vector2(0, 0);
+                if (GameData.Player.ShotsFired != rcsBulletTracker)
+                {
+                    if(oPunch != SharpDX.Vector3.Zero)
+                    {
+                        oPunch = SharpDX.Vector3.Zero;
+                        Console.WriteLine("reset opunch");
+                    }
+
+
+                }
+
+
             }
+
+
+        }
+
+
+        public void SetViewAngle(float Yaw, float Pitch)
+        {
+            Vector2 Angle = new Vector2(Pitch, Yaw);
+            GameProcess.ModuleClient.Write<Vector2>(Offsets.dwViewAngles, Angle);
         }
     }
+
 }

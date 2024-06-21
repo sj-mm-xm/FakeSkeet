@@ -22,7 +22,7 @@
         </Grid.Background>
         <TabControl Margin="10,17,10,10" Background="#02FFFFFF">
             <TabItem Header="Aimbot">
-                <Grid Background="#FF111111">
+                <Grid x:Name="triggerBotGetHotKey1" Background="#FF111111">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="13*"/>
                         <ColumnDefinition Width="374*"/>
@@ -39,8 +39,10 @@
                     <Slider x:Name="triggerBotDelay" IsSnapToTickEnabled="True" HorizontalAlignment="Left" Margin="160,213,0,0" VerticalAlignment="Top" Width="120" Maximum="200" SmallChange="1" Value="40" ValueChanged="triggerDelayChanged" Grid.Column="1"/>
                     <Label x:Name="tbotDelayLabel" Content="Triggerbot delay(ms): 40" HorizontalAlignment="Left" Margin="16,205,0,0" VerticalAlignment="Top" Width="165" Foreground="White" Grid.ColumnSpan="2"/>
                     <Button x:Name="triggerBotGetHotKey" Grid.Column="1" Content="   [   .  .  .   ]   " HorizontalAlignment="Left" Margin="160,241,0,0" VerticalAlignment="Top" Height="22" Width="120" Background="#FF111111" Foreground="White" Click="Button_Click"/>
-                    <Label x:Name="tbotDelayLabel_Copy" Content="Triggerbot key(hold): " HorizontalAlignment="Left" Margin="16,239,0,0" VerticalAlignment="Top" Width="165" Foreground="White" Grid.ColumnSpan="2"/>
+                    <Label x:Name="tbotDelayLabel1" Content="Triggerbot key(hold): " HorizontalAlignment="Left" Margin="16,239,0,0" VerticalAlignment="Top" Width="165" Foreground="White" Grid.ColumnSpan="2"/>
                     <CheckBox x:Name="hitsound" Grid.Column="1" Content="Hitsound" HorizontalAlignment="Left" Margin="30,95,0,0" VerticalAlignment="Top" Foreground="#FFD8CACA" Checked="hitsound_Checked" Unchecked="hitsound_UnChecked" RenderTransformOrigin="-1.396,4.374"/>
+                    <CheckBox x:Name="autoStopCheck" Grid.Column="1" Content="Aimbot autostop" HorizontalAlignment="Left" Margin="111,34,0,0" VerticalAlignment="Top" Foreground="#FFD8CACA" Checked="autoStop_Checked" Unchecked="autoStop_UnChecked" RenderTransformOrigin="-1.396,4.374"/>
+                    <CheckBox x:Name="bhopCheck" Grid.Column="1" Content="Shameful bhop" HorizontalAlignment="Left" Margin="111,54,0,0" VerticalAlignment="Top" Foreground="#FFD8CACA" Checked="bhop_Checked" Unchecked="bhop_UnChecked" RenderTransformOrigin="-1.396,4.374"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Visuals">
@@ -60,11 +62,19 @@
                     <CheckBox x:Name="teamHealthint" Content="Health (number)" HorizontalAlignment="Left" Margin="52,160,0,0" VerticalAlignment="Top" Foreground="#FFEFE2E2" Checked="tHealthint_Checked" Unchecked="tHealthint_Unchecked" Grid.Column="1"/>
 
 
-                    <Slider x:Name="sliderFov" IsSnapToTickEnabled="True" HorizontalAlignment="Left" Margin="78,198,0,0" VerticalAlignment="Top" Width="120" Maximum="180" Minimum="30" SmallChange="1" Value="90" ValueChanged="Slider_ValueChanged" Grid.Column="1"/>
+                    <Slider x:Name="sliderFov" IsSnapToTickEnabled="True" HorizontalAlignment="Left" Margin="78,265,0,0" VerticalAlignment="Top" Width="120" Maximum="180" Minimum="30" SmallChange="1" Value="90" ValueChanged="Slider_ValueChanged" Grid.Column="1"/>
 
-                    <Label x:Name="labelFov" Content="FOV: 90" HorizontalAlignment="Left" Margin="12,194,0,0" VerticalAlignment="Top" Background="#FF111111" Foreground="#FFD8C2C2" RenderTransformOrigin="0.606,1.003" Grid.Column="1"/>
+                    <Label x:Name="labelFov" Content="FOV: 90" HorizontalAlignment="Left" Margin="12,261,0,0" VerticalAlignment="Top" Background="#FF111111" Foreground="#FFD8C2C2" RenderTransformOrigin="0.606,1.003" Grid.Column="1"/>
                     <Label x:Name="aimFOV_Copy" Content="Enemy" HorizontalAlignment="Left" Margin="6,25,0,0" VerticalAlignment="Top" Width="54" Foreground="White" Grid.Column="1" RenderTransformOrigin="0.611,1.234"/>
                     <Label x:Name="aimFOV_Copy1" Content="Team" HorizontalAlignment="Left" Margin="6,112,0,0" VerticalAlignment="Top" Width="54" Foreground="White" Grid.Column="1" RenderTransformOrigin="0.611,1.234"/>
+                    <CheckBox x:Name="enemyGlowCheck" Content="Glow" HorizontalAlignment="Left" Margin="52,92,0,0" VerticalAlignment="Top" Foreground="#FFEFE2E2" Checked="enemyGlow_Checked" Unchecked="enemyGlow_Unchecked" Grid.Column="1"/>
+                    <CheckBox x:Name="teamGlowCheck" Content="Glow" HorizontalAlignment="Left" Margin="52,178,0,0" VerticalAlignment="Top" Foreground="#FFEFE2E2" Checked="teamGlow_Checked" Unchecked="teamGlow_Unchecked" Grid.Column="1"/>
+                    <Label x:Name="teamglowcolorlabel" Content="Team glow color" HorizontalAlignment="Left" Margin="6,227,0,0" VerticalAlignment="Top" Width="99" Foreground="White" Grid.Column="1" RenderTransformOrigin="0.611,1.234"/>
+                    <Label x:Name="enemyglowcolorlabel" Content="Enemy glow color" HorizontalAlignment="Left" Margin="6,197,0,0" VerticalAlignment="Top" Width="105" Foreground="White" Grid.Column="1" RenderTransformOrigin="0.611,1.234"/>
+                    <Label x:Name="labelFov_Copy" Content="0x" HorizontalAlignment="Left" Margin="101,229,0,0" VerticalAlignment="Top" Background="#FF111111" Foreground="#FFD8C2C2" RenderTransformOrigin="0.606,1.003" Grid.Column="1"/>
+                    <TextBox x:Name="txt_teamGlow" Grid.Column="1" HorizontalAlignment="Left" Margin="127,234,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="71" Background="#FF111111" Foreground="#FFF1EDED" TextChanged="txt_teamGlow_TextChanged"/>
+                    <Label x:Name="labelFov_Copy1" Content="0x" HorizontalAlignment="Left" Margin="105,198,0,0" VerticalAlignment="Top" Background="#FF111111" Foreground="#FFD8C2C2" RenderTransformOrigin="0.606,1.003" Grid.Column="1"/>
+                    <TextBox x:Name="txt_teamGlow_Copy" Grid.Column="1" HorizontalAlignment="Left" Margin="127,204,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="71" Background="#FF111111" Foreground="#FFF1EDED" TextChanged="txt_teamGlow_Copy_TextChanged"/>
 
                 </Grid>
 

@@ -61,17 +61,23 @@ namespace CS2Cheat.Features
             GameProcess.Process.Write<int>(ObserverServices + 0x40, 3);
             */
 
+            /*
+    DWORD64 m_Glow= 0xBA0;
+    DWORD64 m_glowColorOverride = 0x40;
+    DWORD64 m_bGlowing = 0x51;
+     
+    DWORD64 GlowColorOverride = pawn + m_Glow + m_glowColorOverride;
+    DWORD64 GlowFunction = pawn + m_Glow + m_bGlowing;
+     
+    write(GlowColorOverride, 0x800000FF); //you can use any color you want (ARGB)
+    write(GlowFunction, 1);
+
+            */
 
 
 
 
             if (!GameProcess.IsValid || !GameData.Player.IsAlive()) return;
-
-
-
-
-
-
 
 
             IntPtr CPlayer_CameraServices = GameProcess.Process.Read<IntPtr>(GameData.Player.AddressBase + 0x1130);
@@ -105,7 +111,48 @@ namespace CS2Cheat.Features
                 }
                 hit = hits;
             }
-           
+
+            if (config.config.b_e_glow || config.config.b_t_glow)
+            {
+                foreach (Entity entity in GameData.Entities)
+                {
+                    if (entity.AddressBase != GameData.Player.AddressBase)
+                    {
+                        if (config.config.b_e_glow)
+                        {
+                            if (entity.Team != GameData.Player.Team)
+                            {
+                                IntPtr GlowColorOverride = entity.AddressBase + Offsets.m_Glow + 0x40;
+                                IntPtr GlowFunction = entity.AddressBase + Offsets.m_Glow + 0x51; //bGlowing
+
+                                GameProcess.Process.Write<uint>(GlowColorOverride, config.config.enemyGlowColor); // color
+                                GameProcess.Process.Write<int>(GlowFunction, 1);
+
+                            }
+
+                        }
+
+                        if (config.config.b_t_glow)
+                        {
+                            if (entity.Team == GameData.Player.Team)
+                            {
+                                IntPtr GlowColorOverride = entity.AddressBase + Offsets.m_Glow + 0x40;
+                                IntPtr GlowFunction = entity.AddressBase + Offsets.m_Glow + 0x51; //bGlowing
+
+                                GameProcess.Process.Write<uint>(GlowColorOverride, config.config.teamGlowColor); // color
+                                GameProcess.Process.Write<int>(GlowFunction, 1);
+
+                            }
+
+                        }
+
+
+
+                    }
+
+                }
+            }
+
 
 
 

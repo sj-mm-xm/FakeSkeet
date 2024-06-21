@@ -11,6 +11,8 @@ using System.Windows.Media.Animation;
 using Application = System.Windows.Application;
 using System.Windows.Media;
 using MessageBox = System.Windows.MessageBox;
+using Color = System.Windows.Media.Color;
+using System.Text;
 
 namespace CS2Cheat
 {
@@ -387,6 +389,170 @@ namespace CS2Cheat
         private void hitsound_UnChecked(object sender, RoutedEventArgs e)
         {
             config.config.hitsound = false;
+
+        }
+
+        private void enemyGlow_Checked(object sender, RoutedEventArgs e)
+        {
+            config.config.b_e_glow = true;
+
+        }
+        private void enemyGlow_Unchecked(object sender, RoutedEventArgs e)
+        {
+            config.config.b_e_glow = false;
+
+        }
+
+        private void teamGlow_Checked(object sender, RoutedEventArgs e)
+        {
+            config.config.b_t_glow = true;
+
+
+        }
+        private void teamGlow_Unchecked(object sender, RoutedEventArgs e)
+        {
+            config.config.b_t_glow = false;
+
+
+        }
+
+        private void teamGlowColor_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            try
+            {
+
+            }
+            catch
+            {
+
+            }
+
+        }
+
+        private void enemyGlowColor_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+            try
+            {
+
+            }
+            catch
+            {
+
+            }
+
+        }
+
+        private void autoStop_Checked(object sender, RoutedEventArgs e)
+        {
+            config.config.autoStop = true;
+
+
+        }
+        private void autoStop_UnChecked(object sender, RoutedEventArgs e)
+        {
+            config.config.autoStop = false;
+
+
+        }
+
+        // enemy
+        private void txt_teamGlow_Copy_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            
+            StringBuilder filteredText = new StringBuilder();
+
+            foreach (char c in txt_teamGlow_Copy.Text)
+            {
+                if ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F'))
+                {
+                    filteredText.Append(c);
+                }
+            }
+
+            txt_teamGlow_Copy.Text = filteredText.ToString();
+
+            if (txt_teamGlow_Copy.Text.Length > 8)
+            {
+                txt_teamGlow_Copy.Text = txt_teamGlow_Copy.Text.Substring(0, 8);
+            }
+
+            txt_teamGlow_Copy.CaretIndex = txt_teamGlow_Copy.Text.Length;
+
+            if (txt_teamGlow_Copy.Text.Length == 8)
+            {
+                if (uint.TryParse(txt_teamGlow_Copy.Text, System.Globalization.NumberStyles.HexNumber, null, out uint result))
+                {
+                    config.config.enemyGlowColor = result;
+
+                    SolidColorBrush brush = new SolidColorBrush(Color.FromArgb(
+                        (byte)((config.config.enemyGlowColor >> 24) & 0xFF),
+                        (byte)((config.config.enemyGlowColor >> 16) & 0xFF),
+                        (byte)((config.config.enemyGlowColor >> 8) & 0xFF),
+                        (byte)(config.config.enemyGlowColor & 0xFF)));
+
+                    // Swap R and B values in config.config.enemyGlowColor
+                    config.config.enemyGlowColor = (config.config.enemyGlowColor & 0xFF00FF00) | ((config.config.enemyGlowColor & 0x00FF0000) >> 16) | ((config.config.enemyGlowColor & 0x000000FF) << 16);
+
+                    enemyglowcolorlabel.Foreground = brush;
+                }
+            }
+
+        }
+
+        private void txt_teamGlow_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            StringBuilder filteredText = new StringBuilder();
+
+            foreach (char c in txt_teamGlow.Text)
+            {
+                if ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F'))
+                {
+                    filteredText.Append(c);
+                }
+            }
+
+            txt_teamGlow.Text = filteredText.ToString();
+
+            if (txt_teamGlow.Text.Length > 8)
+            {
+                txt_teamGlow.Text = txt_teamGlow.Text.Substring(0, 8);
+            }
+
+            txt_teamGlow.CaretIndex = txt_teamGlow.Text.Length;
+
+            if (txt_teamGlow.Text.Length == 8)
+            {
+                if (uint.TryParse(txt_teamGlow.Text, System.Globalization.NumberStyles.HexNumber, null, out uint result))
+                {
+                    config.config.teamGlowColor = result;
+
+                    SolidColorBrush brush = new SolidColorBrush(Color.FromArgb(
+                        (byte)((config.config.teamGlowColor >> 24) & 0xFF),
+                        (byte)((config.config.teamGlowColor >> 16) & 0xFF),
+                        (byte)((config.config.teamGlowColor >> 8) & 0xFF),
+                        (byte)(config.config.teamGlowColor & 0xFF)));
+
+                    // Swap R and B values in config.config.enemyGlowColor
+                    config.config.teamGlowColor = (config.config.teamGlowColor & 0xFF00FF00) | ((config.config.teamGlowColor & 0x00FF0000) >> 16) | ((config.config.teamGlowColor & 0x000000FF) << 16);
+
+                    teamglowcolorlabel.Foreground = brush;
+                }
+            }
+
+
+
+        }
+
+        private void bhop_Checked(object sender, RoutedEventArgs e)
+        {
+            config.config.bhop = true;
+
+        }
+
+        private void bhop_UnChecked(object sender, RoutedEventArgs e)
+        {
+            config.config.bhop = false;
 
         }
     }

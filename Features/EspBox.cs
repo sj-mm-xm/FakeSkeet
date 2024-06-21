@@ -1,5 +1,6 @@
 ﻿using CS2Cheat.Core.Data;
 using CS2Cheat.Data.Entity;
+using CS2Cheat.Data.Game;
 using CS2Cheat.Graphics;
 using SharpDX;
 using SharpDX.Direct3D9;
@@ -20,6 +21,9 @@ public static class EspBox
             if (!entity.IsAlive() || entity.AddressBase == graphics.GameData.Player.AddressBase)
                 continue;
 
+            
+
+
             var boundingBox = GetEntityBoundingBox(graphics, entity);
             boundingBoxes.Add(entity, boundingBox);
 
@@ -36,6 +40,7 @@ public static class EspBox
     private static void DrawEntityRectangle(Graphics.Graphics graphics, Entity entity, Color color,
         (Vector2, Vector2) boundingBox)
     {
+        
         // Draw a small square around the center of each bone, vector3, in entity.BonePos[]
         // 
 

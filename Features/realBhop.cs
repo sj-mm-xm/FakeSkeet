@@ -11,7 +11,7 @@ using config;
 
 namespace CS2Cheat.Features
 {
-    public class bhop : ThreadedServiceBase
+    public class realBhop : ThreadedServiceBase
     {
         private readonly object _stateLock = new();
         private GameProcess GameProcess { get; set; }
@@ -26,13 +26,13 @@ namespace CS2Cheat.Features
         private const int WM_KEYDOWN = 0x0100;
         private const int WM_KEYUP = 0x0101;
 
-        private const int VK_W = 0x57; 
-        private const int VK_S = 0x53; 
-        private const int VK_A = 0x41; 
-        private const int VK_D = 0x44; 
+        private const int VK_W = 0x57;
+        private const int VK_S = 0x53;
+        private const int VK_A = 0x41;
+        private const int VK_D = 0x44;
         private const int VK_SPACE = 0x20;
 
-        public bhop(GameProcess gameProcess, GameData gameData)
+        public realBhop(GameProcess gameProcess, GameData gameData)
         {
             GameProcess = gameProcess;
             GameData = gameData;
@@ -63,7 +63,7 @@ namespace CS2Cheat.Features
 
         protected override void FrameAction()
         {
-            if (!GameProcess.IsValid || !GameData.Player.IsAlive() || !config.config.autoStop)
+            if (!GameProcess.IsValid || !GameData.Player.IsAlive() || !config.config.bhop)
             {
                 return;
             }
@@ -75,62 +75,19 @@ namespace CS2Cheat.Features
                 return;
             }
 
-            if (config.neededInfo.isAiming) 
+            while((GetAsyncKeyState(VK_SPACE) & 0x8000) != 0)
             {
+                if(GameData.Player.FFlags != 65664)
+                {
+                    keyUp(hWnd, VK_SPACE);
 
-                if ((GetAsyncKeyState(VK_W) & 0x8000) != 0)
-                {
-                    keyDown(hWnd, VK_S);
-                    wasW = true;
-                }
-                if ((GetAsyncKeyState(VK_S) & 0x8000) != 0)
-                {
-                    keyDown(hWnd, VK_W);
-                    wasS = true;
+                    keyDown(hWnd, VK_SPACE);
 
                 }
-                if ((GetAsyncKeyState(VK_A) & 0x8000) != 0)
-                {
-                    keyDown(hWnd, VK_D);
-                    wasA = true;
-
-                }
-                if ((GetAsyncKeyState(VK_D) & 0x8000) != 0)
-                {
-                    keyDown(hWnd, VK_A);
-                    wasD = true;
-
-                }
-            }
-            if (!config.neededInfo.isAiming)
-            {
-                if (wasW)
-                {
-                    keyUp(hWnd, VK_S);
-                    wasW = false;
-                }
-                if (wasS)
-                {
-                    keyUp(hWnd, VK_W);
-                    wasS = false;
-
-                }
-                if (wasA)
-                {
-                    keyUp(hWnd, VK_D);
-                    wasA = false;
-
-                }
-                if (wasD)
-
-                {
-                    wasD = false;
-
-                    keyUp(hWnd, VK_A);
-                }
-
+                Thread.Sleep(1);
 
             }
+
         }
 
         [DllImport("user32.dll")]

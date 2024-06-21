@@ -82,9 +82,19 @@ namespace CS2Cheat.Features
 
                 if (closestEnemy != null && closestEnemyScreenPosition != Vector2.Zero)
                 {
+                    config.neededInfo.isAiming = true;
+
                     AdjustAim(closestEnemyScreenPosition);
                 }
+                else
+                {
+                    config.neededInfo.isAiming = false;
+                }
 
+            }
+            else
+            {
+                config.neededInfo.isAiming = false;
             }
         }
 
